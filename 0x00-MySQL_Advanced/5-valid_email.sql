@@ -1,23 +1,14 @@
---- create trigger to reset valid_email
---- when email is updated
-
--- Drop trigger if it exists
-DROP TRIGGER IF EXISTS reset_valid_email;
-
--- Change delimiter for trigger creation
+-- SQL script that creates a trigger that resets 
+-- the attribute valid_email only when the email has been changed.
 DELIMITER $$
-
--- Create trigger
-CREATE TRIGGER reset_valid_email
-BEFORE UPDATE ON users
+CREATE TRIGGER reset 
+BEFORE UPDATE
+ON users
 FOR EACH ROW
 BEGIN
-	IF NEW.email != OLD.email THEN
-		SET NEW.valid_email = 0;
-	ELSE
-		SET NEW.valid_email = NEW.valid_email;
-	END IF;
+    IF NEW.email != OLD.email THEN
+        SET NEW.valid_email = 0;
+    END IF;
 END $$
 
--- Restore default delimiter
-DELIMITER ;
+DELIMITER;
