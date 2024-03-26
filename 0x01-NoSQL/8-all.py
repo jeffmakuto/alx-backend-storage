@@ -8,7 +8,9 @@ def list_all(mongo_collection):
     """
     lists all documents in a collection
 
-    :param mongo_collection:
-    :return:
+    args:
+        mongo_collection:
+    return:
+        all documents in a collection
     """
     return mongo_collection.find()
