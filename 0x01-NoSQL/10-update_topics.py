@@ -6,12 +6,13 @@ Change school topics
 
 def update_topics(mongo_collection, name, topics):
     """
-    changes all topics of a school
-     document based on the name
-
-    :param mongo_collection:
-    :param name:
-    :param topics:
-    :return:
+    Changes all topics of a schooldocument based on the name
+    
+    args:
+        mongo_collection
+        name
+        topics
+    return:
+        The number of documents modified.
     """
     mongo_collection.update_many({"name": name}, {"$set": {"topics": topics}})
