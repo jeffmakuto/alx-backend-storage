@@ -7,8 +7,8 @@ Top students
 def top_students(mongo_collection):
     """
     returns all students sorted by average score
-    :param mongo_collection:
-    :return:
+    args:
+        mongo_collection
     """
     return mongo_collection.aggregate([
         {"$project": {
