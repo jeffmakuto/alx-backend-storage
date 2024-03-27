@@ -14,22 +14,10 @@ redis_store = redis.Redis()
 
 def data_cacher(method: Callable) -> Callable:
     '''Caches the output of fetched data.
-
-    Args:
-        method (Callable): The method to be cached.
-
-    Returns:
-        Callable: The wrapped method that caches the output.
     '''
     @wraps(method)
     def invoker(url) -> str:
         '''The wrapper function for caching the output.
-
-        Args:
-            url (str): The URL of the data to be fetched.
-
-        Returns:
-            str: The cached or fetched data.
         '''
         redis_store.incr(f'count:{url}')
         result = redis_store.get(f'result:{url}')
